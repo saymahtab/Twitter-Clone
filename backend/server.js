@@ -1,8 +1,8 @@
 const express = require('express');
 const dotenv = require('dotenv')
 const { authRoutes } = require('./routes/auth.routes');
-const { connectMongoDB } = require('../db/connectMongoDb');
 const cookieParser = require('cookie-parser');
+const { connectMongoDB } = require('./db/connectMongoDB');
 
 dotenv.config()
 const app = express();

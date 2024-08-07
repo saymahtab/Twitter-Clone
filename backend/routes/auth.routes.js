@@ -1,6 +1,6 @@
 const { Router } = require('express');
 const authControllers = require('../controllers/auth.controller');
-const { protectRoute } = require('../../middleware/protectRoute');
+const { protectRoute } = require('../middleware/protectRoute');
 const authRoutes = Router();
 
 authRoutes.get('/me',protectRoute , authControllers.getMe)

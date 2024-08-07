@@ -1,4 +1,4 @@
-const { User } = require("../backend/models/user.model");
+const { User } = require("../models/user.model");
 const jwt = require('jsonwebtoken')
 
 const protectRoute = async (req, res, next) => {

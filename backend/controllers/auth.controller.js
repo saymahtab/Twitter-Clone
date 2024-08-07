@@ -1,4 +1,4 @@
-const { generateTokenAndSetCookie } = require("../../lib/utils/generateToken");
+const { generateTokenAndSetCookie } = require("../lib/utils/generateToken");
 const { User } = require("../models/user.model");
 const bcrypt = require('bcryptjs')
 
