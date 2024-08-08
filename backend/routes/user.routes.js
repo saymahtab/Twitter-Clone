@@ -8,6 +8,6 @@ userRoutes.get('/suggested', protectRoute, getSuggestedUser)
 userRoutes.post('/follow/:id', protectRoute, followUnfollowUser)
 userRoutes.post('/update', protectRoute, updateUser)
  
-module.exports = {  
+module.exports = {
     userRoutes,
 }

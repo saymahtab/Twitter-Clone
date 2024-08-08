@@ -5,6 +5,7 @@ const { authRoutes } = require('./routes/auth.routes');
 const cookieParser = require('cookie-parser');
 const { connectMongoDB } = require('./db/connectMongoDB');
 const { userRoutes } = require('./routes/user.routes');
+const { postRoutes } = require('./routes/post.routes');
 
 dotenv.config()
 
@@ -23,6 +24,7 @@ app.use(cookieParser())
 
 app.use('/api/auth', authRoutes)
 app.use('/api/user', userRoutes)
+app.use('/api/posts', postRoutes)
 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`)
