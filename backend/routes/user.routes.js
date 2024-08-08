@@ -6,7 +6,7 @@ const userRoutes = Router();
 userRoutes.get('/profile/:username', protectRoute, getUserProfile)
 userRoutes.get('/suggested', protectRoute, getSuggestedUser)
 userRoutes.post('/follow/:id', protectRoute, followUnfollowUser)
-userRoutes.post('/update', protectRoute, updateUser)
+userRoutes.put('/update', protectRoute, updateUser)
  
 module.exports = {
     userRoutes,

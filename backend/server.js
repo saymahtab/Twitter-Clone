@@ -1,15 +1,16 @@
 const express = require('express');
 const dotenv = require('dotenv')
-const {v2} = require('cloudinary')
-const { authRoutes } = require('./routes/auth.routes');
 const cookieParser = require('cookie-parser');
+
 const { connectMongoDB } = require('./db/connectMongoDB');
+const { authRoutes } = require('./routes/auth.routes');
 const { userRoutes } = require('./routes/user.routes');
 const { postRoutes } = require('./routes/post.routes');
+const {v2} = require('cloudinary');
+const { notificationRoutes } = require('./routes/notification.routes');
 
 dotenv.config()
 
-//for allowing image uploading to cloud
 v2.config({
     cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
     api_key: process.env.CLOUDINARY_API_KEY,
@@ -25,6 +26,7 @@ app.use(cookieParser())
 app.use('/api/auth', authRoutes)
 app.use('/api/user', userRoutes)
 app.use('/api/posts', postRoutes)
+app.use('/api/notification', notificationRoutes)
 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`)
