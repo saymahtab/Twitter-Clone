@@ -3,10 +3,10 @@ const dotenv = require('dotenv');
 const cookieParser = require('cookie-parser');
 const { v2: cloudinary } = require('cloudinary');
  
-const { authRoutes } = require('./routes/auth.routes');
+const { authRoutes } = require('./routes/auth.route');
 const { connectMongoDB } = require('./db/connectMongoDB');
-const { userRoutes } = require('./routes/user.routes');
-const { postRoutes } = require('./routes/post.routes');
+const { userRoutes } = require('./routes/user.route');
+const { postRoutes } = require('./routes/post.route');
 
 dotenv.config();
 
