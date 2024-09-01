@@ -15,7 +15,7 @@ const Sidebar = () => {
 
 	return (
 		<div className='md:flex-[2_2_0] w-18 max-w-52'>
-			<div className='sticky top-0 left-0 h-screen flex flex-col border-r border-gray-700 w-20 md:w-full'>
+			<div className='sticky top-0 left-0 h-screen flex flex-col border-r border-zinc-700 w-20 md:w-full'>
 				<Link to='/' className='flex justify-center md:justify-start'>
 					<XSvg className='px-2 w-12 h-12 rounded-full fill-white hover:bg-stone-900' />
 				</Link>
@@ -62,7 +62,7 @@ const Sidebar = () => {
 						<div className='flex justify-between flex-1'>
 							<div className='hidden md:block'>
 								<p className='text-white font-bold text-sm w-20 truncate'>{data?.fullName}</p>
-								<p className='text-slate-500 text-sm'>@{data?.username}</p>
+								<p className='text-zinc-500 text-sm'>@{data?.username}</p>
 							</div>
 							<BiLogOut className='w-5 h-5 cursor-pointer' />
 						</div>

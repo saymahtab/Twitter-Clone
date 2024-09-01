@@ -3,21 +3,22 @@ import HomePage from "./pages/home/HomePage"
 import SignUpPage from "./pages/auth/signup/SignUpPage"
 import LoginPage from "./pages/auth/login/LoginPage"
 import Sidebar from "./components/common/Sidebar"
+import RightPanel from "./components/common/RightPanel"
 
 function App() {
 
   const router = createBrowserRouter([
     {
       path: '/',
-      element: <><Sidebar /><HomePage /></>
+      element: <><Sidebar /><HomePage /><RightPanel /></>
     },
     {
       path: '/signup',
-      element: <><Sidebar /><SignUpPage /></>
+      element: <><SignUpPage /></>
     },
     {
       path: '/login',
-      element: <><Sidebar /><LoginPage /></>
+      element: <><LoginPage /></>
     }
   ])
 
