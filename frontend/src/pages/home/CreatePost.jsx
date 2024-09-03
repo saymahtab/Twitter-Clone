@@ -63,7 +63,7 @@ const CreatePost = () => {
           </div>
         )}
 
-        <div className="flex justify-between border-t border-zinc-700 py-3">
+        <div className="flex justify-between border-t border-zinc-700 py-2">
           <div className="flex gap-2 items-center">
             <CiImageOn 
               className="size-6 fill-primary cursor-pointer"

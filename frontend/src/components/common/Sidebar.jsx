@@ -15,7 +15,7 @@ const Sidebar = () => {
 	};
 
     return (
-        <div className="md:flex-[2_2_0] max-w-[16rem]">
+        <div className="md:flex-[2_2_0] max-w-[16rem] w-18">
             <div className="sticky top-0 left-0 h-screen flex flex-col border-r border-zinc-700 w-20 md:w-full mt-1">
 
                 <Link to='/' className="flex justify-center md:justify-start">
@@ -37,7 +37,7 @@ const Sidebar = () => {
                         </Link>
                     </li>
                     <li className="flex justify-center md:justify-start">
-                        <Link to='/profile' className="flex items-center gap-4 hover:bg-zinc-900 rounded-full max-w-fit pl-[0.78rem] pt-[0.5rem] pb-[0.6rem] pr-8 max-md:pr-3 max-md:pt-3 max-md:pb-3">
+                        <Link to={`/profile/${data?.username}`} className="flex items-center gap-4 hover:bg-zinc-900 rounded-full max-w-fit pl-[0.78rem] pt-[0.5rem] pb-[0.6rem] pr-8 max-md:pr-3 max-md:pt-3 max-md:pb-3">
                             <FaUser className="size-6" />
                             <span className="text-xl pl-[0.15rem] hidden md:block">Profile</span>
                         </Link>
