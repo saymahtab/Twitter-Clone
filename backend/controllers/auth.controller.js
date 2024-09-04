@@ -33,7 +33,7 @@ const signup = async (req, res) => {
             password: hashedPassword,
             email,
         })
-        
+
         if(newUser) {
             generateTokenAndSetCookie(newUser._id, res);
             await newUser.save();
