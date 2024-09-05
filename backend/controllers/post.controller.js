@@ -1,5 +1,4 @@
 const {v2: cloudinary} = require('cloudinary')
-
 const { Post } = require("../models/post.model");
 const { User } = require("../models/user.model");
 const { Notification } = require('../models/notification.model');

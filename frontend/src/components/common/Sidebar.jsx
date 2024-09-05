@@ -64,7 +64,7 @@ const Sidebar = () => {
                         </Link>
                     </li>
                 </ul>
-
+                
                 {authUser && (
                     <Link
                         to={`/profile/${authUser.userName}`}
@@ -83,8 +83,8 @@ const Sidebar = () => {
                             <BiLogOut 
                                 className='w-5 h-5 cursor-pointer' 
                                 onClick={(e) => {
-                                    e.preventDefault(); // Prevent default action
-                                    logout(); // Call the logout mutation
+                                    e.preventDefault();
+                                    logout(); 
                                 }}
                             />
                         </div>
