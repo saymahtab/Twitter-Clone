@@ -19,7 +19,7 @@ const Posts = ({feedType}) => {
 	const POST_ENDPOINT = getPostEndPoint()
 
 	const {data:posts, isLoading, refetch, isRefetching } = useQuery({
-		queryKey: ['postQuery'],
+		queryKey: ['posts'],
 		queryFn: async () => {
 			try {
 				const res = await fetch(POST_ENDPOINT)
