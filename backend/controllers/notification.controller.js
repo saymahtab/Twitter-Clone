@@ -4,14 +4,14 @@ const getNotifications = async (req, res) => {
     try {
         const userId = req.user._id;
 
-        const notification = await Notification.find({ to: userId }).populate({
-            path: 'from',
-            select: 'userName profileImg'
-        })
+        const notifications = await Notification.find({ to: userId }).populate({
+			path: "from",
+			select: "userName profileImg",
+		});
 
         await Notification.updateMany({to: userId}, {read: true});
 
-        res.status(200).json(notification);
+        res.status(200).json(notifications);
     } 
     catch (err) {
         console.log("Error in getNotifications controller", err.message);
