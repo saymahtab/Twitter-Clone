@@ -1,6 +1,8 @@
 import { useQuery } from '@tanstack/react-query'
 import { Link } from 'react-router-dom'
 import RightPanelSkeleton from '../skeletons/RightPanelSkeleton';
+import useFollow from '../../hooks/useFollow';
+import LoadingSpinner from './LoadingSpinner';
 
 const RightPanel = () => {
 
@@ -21,8 +23,9 @@ const RightPanel = () => {
         }
     })
 
-    if(suggestedUsers?.length === 0) return <div className='md:64 w-0'></div>
+    const { follow, isPending } = useFollow();
 
+    if(suggestedUsers?.length === 0) return <div className='md:64 w-0'></div>
 
     return (
         <div className='hidden lg:block my-4 mx-7'>
@@ -40,7 +43,7 @@ const RightPanel = () => {
                 {!isLoading && (
                     suggestedUsers.map((user) => (
                         <Link 
-                            to={`/profile/${user.username}`}
+                            to={`/profile/${user.userName}`}
                             className='flex items-center justify-between gap-4'
                             key={user._id}
                         >
@@ -52,15 +55,18 @@ const RightPanel = () => {
                                 </div>
                                 <div className='flex flex-col'>
                                     <span className='font-semibold tracking-tight truncate w-28'>{user.fullName}</span>
-                                    <span className='text-sm text-zinc-500'>@{user.username}</span>
+                                    <span className='text-sm text-zinc-500'>@{user.userName}</span>
                                 </div>
                             </div>
                             <div>
                                 <button
                                     className='btn bg-white text-black hover:bg-white hover:opacity-90 rounded-full btn-sm'
-                                    onClick={(e) => e.preventDefault()}
+                                    onClick={(e) => {
+                                        e.preventDefault();
+                                        follow(user._id)
+                                    }}
                                 >
-                                    Follow
+                                    {isPending ? <LoadingSpinner size='sm'/> : 'Follow'}
                                 </button>
                             </div>
                         </Link>

@@ -7,7 +7,7 @@ const HomePage = () => {
     const [feedType, setFeedType] = useState('foryou')
 
     return (
-        <div className='flex-[4_4_0] border-r border-zinc-700 min-h-screen'>
+        <div className='flex-[4_4_0] border-r border-zinc-700 min-h-screen mr-auto'>
             <div className='flex w-full border-b border-zinc-700'>
                 <div 
                     className='flex flex-1 justify-center p-3 hover:bg-secondary transition cursor-pointer duration-300 relative'

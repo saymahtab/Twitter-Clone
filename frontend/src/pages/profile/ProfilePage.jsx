@@ -11,8 +11,12 @@ import { FaArrowLeft } from "react-icons/fa6";
 import { IoCalendarOutline } from "react-icons/io5";
 import { FaLink } from "react-icons/fa";
 import { MdEdit } from "react-icons/md";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 
 const ProfilePage = () => {
+
+	const queryClient = useQueryClient();
+	const {data:authUser} = useQuery({queryKey: ['authUser']})
 
 	const [coverImg, setCoverImg] = useState(null);
 	const [profileImg, setProfileImg] = useState(null);
@@ -22,7 +26,7 @@ const ProfilePage = () => {
 	const profileImgRef = useRef(null);
 
 	const isLoading = false;
-	const isMyProfile = true;
+	const isMyProfile = false;
 
 	const user = {
 		_id: "1",
