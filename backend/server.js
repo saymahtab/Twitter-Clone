@@ -1,4 +1,5 @@
 const express = require('express');
+const path = require('path')
 const dotenv = require('dotenv');
 const cookieParser = require('cookie-parser');
 const { v2: cloudinary } = require('cloudinary');
@@ -29,6 +30,14 @@ app.use('/api/auth', authRoutes)
 app.use('/api/users', userRoutes)
 app.use('/api/posts', postRoutes)
 app.use('/api/notifications', notificationRoutes)
+
+if(process.env.NODE_ENV === 'production') {
+    app.use(express.static(path.join(__dirname, "../frontend/dist")));
+
+    app.get('*', (req, res) => {
+        res.sendFile(path.resolve(__dirname, "frontend", "dist", "index.html"))
+    })
+}
 
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`)

@@ -11,19 +11,19 @@ import { FaArrowLeft } from "react-icons/fa6";
 import { IoCalendarOutline } from "react-icons/io5";
 import { FaLink } from "react-icons/fa";
 import { MdEdit } from "react-icons/md";
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import {useQuery, useQueryClient} from "@tanstack/react-query";
 import { formatMemberSinceDate } from "../../utils/date";
 import useFollow from "../../hooks/useFollow";
-import toast from "react-hot-toast";
+import useUpdateUserProfile from "../../hooks/useUpdateUserProfile.jsx";
 
 const ProfilePage = () => {
 	const [coverImg, setCoverImg] = useState(null);
 	const [profileImg, setProfileImg] = useState(null);
 	const [feedType, setFeedType] = useState("posts");
 
-	const queryClient = useQueryClient();
-
 	const { username } = useParams();
+
+	const queryClient = useQueryClient();
 
 	const {data:user, isLoading, refetch, isRefetching} = useQuery({
 		queryKey: ['userProfile'],
@@ -46,40 +46,7 @@ const ProfilePage = () => {
 		}
 	})
 
-	const { mutate:updateProfile, isPending: isUpdatingProfile } = useMutation({
-		mutationFn: async () => {
-		  try {
-			const res = await fetch('/api/users/update', {
-			  method: 'PATCH',
-			  headers: {
-				'Content-Type': 'application/json'
-			  },
-			  body: JSON.stringify({
-				coverImg,
-				profileImg,
-			  })
-			})
-	
-			const data = await res.json();
-			if(!res.ok) throw new Error(data.error || 'Something went wrong');
-	
-			return data;
-		  } 
-		  catch (error) {
-			throw new Error(error)
-		  }
-		},
-		onSuccess: () => {
-		  toast.success('Post Created Successfully');
-		  Promise.all([
-			queryClient.invalidateQueries({queryKey: ['authUser']}),
-			queryClient.invalidateQueries({queryKey: ['userProfile']}),
-		  ])
-		},
-		onError: (error) => {
-			toast.error(error.message)
-		}
-	  })
+	const {updateProfile, isUpdatingProfile } = useUpdateUserProfile();
 
 	const {follow, isPending} = useFollow();
 	const { data:authUser } = useQuery({queryKey: ['authUser']})
@@ -182,7 +149,12 @@ const ProfilePage = () => {
 								{(coverImg || profileImg) && (
 									<button
 										className='btn btn-primary rounded-full btn-sm text-white px-4 ml-2'
-										onClick={() => updateProfile()}
+										onClick={async () => {
+											await updateProfile({coverImg, profileImg});
+											setProfileImg(null);
+											setCoverImg(null);
+
+										}}
 									>
 										{isUpdatingProfile ? "Updating": "Update"}
 									</button>
@@ -202,12 +174,12 @@ const ProfilePage = () => {
 											<>
 												<FaLink className='w-3 h-3 text-slate-500' />
 												<a
-													href={authUser.link}
+													href={user.link}
 													target='_blank'
 													rel='noreferrer'
 													className='text-sm text-blue-500 hover:underline'
 												>
-													{authUser.link}
+													{user.link}
 												</a>
 											</>
 										</div>
